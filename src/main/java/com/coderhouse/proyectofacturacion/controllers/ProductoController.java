@@ -8,36 +8,32 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.coderhouse.proyectofacturacion.models.Producto;
-import com.coderhouse.proyectofacturacion.repositories.ProductoRepository;
+import com.coderhouse.proyectofacturacion.services.ProductoService;
 
 @RestController
 @RequestMapping("/api/productos")
 public class ProductoController {
 	
 	@Autowired
-	private ProductoRepository productoRepository;
+	private ProductoService productoService;
 	
 	@GetMapping
 	public List<Producto> getAllProductos() {
-		return productoRepository.findAll();
+		return productoService.getAllProductos();
 	}	
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Producto> getProductoById (@PathVariable Long id)
 	{
 		try {
-			if (productoRepository.existsById(id))
-			{
-				return ResponseEntity.ok(productoRepository.findById(id).get());
-			}
-			else
-			{
-				return ResponseEntity.notFound().build();
-			}
+			
+			Producto producto = productoService.getProductoById(id).orElseThrow();
+			return ResponseEntity.ok().body(producto);
 		} catch (Exception e)
 		{
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // http 500
@@ -48,6 +44,13 @@ public class ProductoController {
 	@PostMapping
 	public Producto createProducto(@RequestBody Producto producto)
 	{
-		return productoRepository.save(producto);
+		return productoService.agregarProducto(producto);
+	}
+	
+	@PutMapping("/{id}") 
+	public ResponseEntity<Producto> updateProduct(@PathVariable Long id, @RequestBody Producto productoDetalle) 
+	{ 
+		Producto productoActualizado = productoService.actualizarProducto(id, productoDetalle); 
+		return ResponseEntity.ok(productoActualizado); 
 	}
 }

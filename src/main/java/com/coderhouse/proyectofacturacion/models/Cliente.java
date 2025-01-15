@@ -13,6 +13,7 @@ public class Cliente {
     private String nombre;
     private String apellido;
     private String telefono;
+    private String email;
 
     public void setId(Long id) {
         this.id = id;
@@ -39,13 +40,22 @@ public class Cliente {
     public String getTelefono() {
         return telefono;
     }
+    
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public String getEmail() {
+        return email;
+    }
+    
     public Cliente() {
         super();
     }
-    public Cliente(String nombre, String apellido, String telefono) {
+    public Cliente(String nombre, String apellido, String telefono, String email) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
+        this.email = email;
     }
 
 

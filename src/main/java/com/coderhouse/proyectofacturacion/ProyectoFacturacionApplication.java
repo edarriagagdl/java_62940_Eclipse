@@ -29,8 +29,8 @@ public class ProyectoFacturacionApplication implements CommandLineRunner {
 			Categoria categoria1 = new Categoria("Utencilios", "Utencilios de cocina");
 			Categoria categoria2 = new Categoria("No pedecederos", "No Pedecederos");
 
-			Cliente cliente1 = new Cliente("Pedro","Jimenez", "111111");
-			Cliente cliente2 = new Cliente("Juan","Perez", "22222");
+			Cliente cliente1 = new Cliente("Pedro","Jimenez", "111111", "pedro@email.com");
+			Cliente cliente2 = new Cliente("Juan","Perez", "22222", "juan@email.com");
 
 			daoFactory.persistirProducto(producto1);
 			daoFactory.persistirProducto(producto2);
