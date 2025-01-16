@@ -32,6 +32,12 @@ public class Categoria {
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
+    
+    public Categoria(String nombre, String descripcion, List<Producto> productos ) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.productos = productos;
+    }
 
     public String getNombre() {
         return nombre;

@@ -4,6 +4,10 @@ import com.coderhouse.proyectofacturacion.dao.DaoFactory;
 import com.coderhouse.proyectofacturacion.models.Categoria;
 import com.coderhouse.proyectofacturacion.models.Cliente;
 import com.coderhouse.proyectofacturacion.models.Producto;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -26,7 +30,10 @@ public class ProyectoFacturacionApplication implements CommandLineRunner {
 			Producto producto2 = new Producto("Cuchara", "Cuchara", 12.00, 50);
 			Producto producto3 = new Producto("Cuchillo", "Cuchillo", 20.00, 50);
 
-			Categoria categoria1 = new Categoria("Utencilios", "Utencilios de cocina");
+			List<Producto> productosCategoria = new ArrayList<Producto>();
+			productosCategoria.add(producto1);
+			productosCategoria.add(producto2);
+			Categoria categoria1 = new Categoria("Utencilios", "Utencilios de cocina", productosCategoria);
 			Categoria categoria2 = new Categoria("No pedecederos", "No Pedecederos");
 
 			Cliente cliente1 = new Cliente("Pedro","Jimenez", "111111", "pedro@email.com");
