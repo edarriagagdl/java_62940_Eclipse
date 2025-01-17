@@ -51,7 +51,7 @@ public class CategoriaController {
 	@DeleteMapping("/{id}") 
 	public ResponseEntity<Void> deleteCategoria(@PathVariable Long id) { 
 		categoriaService.borrarCategoria(id); 
-		return ResponseEntity.noContent().build();
+		return ResponseEntity.ok().build();
 	}
 	
 	
